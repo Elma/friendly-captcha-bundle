@@ -19,7 +19,7 @@ class ResourceCompilerPass implements CompilerPassInterface
             'twig.form.resources',
             array_merge(
                 array(
-                    '@CORS/Bundle/FriendlyCaptchaBundle/Resources/views/friendlycaptcha.html.twig',
+                    '@CORSFriendlyCaptcha/friendlycaptcha.html.twig',
                 ),
                 $container->getParameter('twig.form.resources')
             )
