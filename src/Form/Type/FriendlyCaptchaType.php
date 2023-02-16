@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CORS\Bundle\FriendlyCaptchaBundle\Form\Type;
 
+use CORS\Bundle\FriendlyCaptchaBundle\Validator\FriendlyCaptchaValid;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormInterface;
@@ -45,6 +46,7 @@ final class FriendlyCaptchaType extends AbstractType
             'lang' => null,
             'start' => 'focus',
             'callback' => null,
+            'constraints' => [new FriendlyCaptchaValid()]
         ]);
 
         $resolver->setAllowedValues('start', ['auto', 'focus', 'none']);
