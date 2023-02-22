@@ -29,6 +29,11 @@ class FriendlyCaptchaValidValidator extends ConstraintValidator
         if (!$constraint instanceof FriendlyCaptchaValid) {
             throw new UnexpectedTypeException($constraint, FriendlyCaptchaValid::class);
         }
+        if ('' === (string) $value) {
+            $this->context->addViolation($constraint->message);
+
+            return;
+        }
 
         $response = $this->httpClient->request('POST', $this->endpoint, [
             'body' => [
