@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CORS\Bundle\FriendlyCaptchaBundle\Validator;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\HttpClient\Exception\ServerException;
 use Symfony\Component\HttpClient\Exception\TransportException;
@@ -18,17 +19,20 @@ class FriendlyCaptchaValidValidator extends ConstraintValidator
     protected $secret;
     protected $sitekey;
     protected $endpoint;
+    protected $logger;
 
     public function __construct(
         HttpClientInterface $httpClient,
         string $secret,
         string $sitekey,
-        string $endpoint
+        string $endpoint,
+        LoggerInterface $logger
     ){
         $this->httpClient = $httpClient;
         $this->secret = $secret;
         $this->sitekey = $sitekey;
         $this->endpoint = $endpoint;
+        $this->logger = $logger;
     }
 
     public function validate($value, Constraint $constraint)
@@ -56,6 +60,8 @@ class FriendlyCaptchaValidValidator extends ConstraintValidator
                 $e instanceof TransportException
                 || ($e instanceof ServerException && $e->getCode() === 504)
             ) {
+                $this->logger->error('Captcha server not responding customer has been authorized');
+
                 return;
             }
 
