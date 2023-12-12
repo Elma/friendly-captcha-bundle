@@ -3,9 +3,9 @@ Elma Friendly Captcha Bundle
 
 [![CI](https://github.com/elma/friendly-captcha-bundle/actions/workflows/build.yml/badge.svg)](https://github.com/elma/friendly-captcha-bundle/actions/workflows/build.yml)
 
-This bundle provides easy [friendlycaptcha.com](https://www.friendlycaptcha.com) form field for Symfony.
+This bundle provides an easy [friendlycaptcha.com](https://www.friendlycaptcha.com) form field for Symfony.
 
-This is a fork of the [cors][https://github.com/cors-gmbh/friendly-captcha-bundle] bundle, that does not seems to be maintened,  [see this PR for details][https://github.com/cors-gmbh/friendly-captcha-bundle/pull/3]
+This is a fork of the [cors][https://github.com/cors-gmbh/friendly-captcha-bundle] bundle, that does not seem to be maintained,  [see this PR for details][https://github.com/cors-gmbh/friendly-captcha-bundle/pull/3]
 
 ## Installation
 
