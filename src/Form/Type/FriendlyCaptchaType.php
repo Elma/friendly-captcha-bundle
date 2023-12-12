@@ -22,12 +22,12 @@ final class FriendlyCaptchaType extends AbstractType
         $this->endpoint = $endpoint;
     }
 
-    public function getParent()
+    public function getParent(): string
     {
         return HiddenType::class;
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $fcValues = array_filter([
             'puzzle-endpoint' => $this->endpoint,
@@ -40,7 +40,7 @@ final class FriendlyCaptchaType extends AbstractType
         $view->vars['friendly_captcha'] = $fcValues;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'lang' => null,
@@ -52,7 +52,7 @@ final class FriendlyCaptchaType extends AbstractType
         $resolver->setAllowedValues('start', ['auto', 'focus', 'none']);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'cors_friendly_catcha_type';
     }
