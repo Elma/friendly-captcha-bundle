@@ -34,7 +34,7 @@ class FriendlyCaptchaValidValidator extends ConstraintValidator
         $this->logger = $logger;
     }
 
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint $constraint): void
     {
         if (!$constraint instanceof FriendlyCaptchaValid) {
             throw new UnexpectedTypeException($constraint, FriendlyCaptchaValid::class);
