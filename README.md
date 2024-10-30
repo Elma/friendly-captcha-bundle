@@ -18,25 +18,24 @@ php composer.phar require elma/friendly-captcha-bundle
 ```
 
 Now, Composer will automatically download all required files, and install them
-for you. All that is left to do is to update your ``AppKernel.php`` file, and
+for you. All that is left to do is to update your ``bundles.php`` file, and
 register the new bundle:
 
 ```php
 <?php
 
-// in AppKernel::registerBundles()
-$bundles = array(
-    // ...
-    new CORS\Bundle\FriendlyCaptchaBundle\CORSFriendlyCaptchaBundle(),
-    // ...
-);
+// in config/bundles.php
+return [
+    CORS\Bundle\FriendlyCaptchaBundle\CORSFriendlyCaptchaBundle::class => ['all' => true],
+    //...
+    ];
 ```
 
 ### Step2: Configure the bundle's
 
 ```yaml
 cors_friendly_captcha:
-    sitekey: here_is_your_sitekey
+    sitekey: here_is_your_api_key
     secret: here_is_your_secret
     use_eu_endpoints: true|false
 ```
@@ -45,10 +44,10 @@ cors_friendly_captcha:
 
 ```yaml
 cors_friendly_captcha:
-  puzzle: 
+  puzzle:
     endpoint: https://api.friendlycaptcha.com/api/v1/puzzle
     eu_endpoint: https://eu-api.friendlycaptcha.eu/api/v1/puzzle
-  validation: 
-    endpoint: https://api.friendlycaptcha.com/api/v1/siteverify
-    eu_endpoint: https://eu-api.friendlycaptcha.eu/api/v1/siteverify
+  validation:
+    endpoint: https://global.frcapi.com/api/v2/captcha/siteverify
+    eu_endpoint: https://eu.frcapi.com/api/v2/captcha/siteverify
 ```
