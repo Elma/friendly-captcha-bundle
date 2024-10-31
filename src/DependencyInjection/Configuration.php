@@ -30,8 +30,8 @@ final class Configuration implements ConfigurationInterface
                 ->arrayNode('validation')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('endpoint')->defaultValue('https://api.friendlycaptcha.com/api/v1/siteverify')->end()
-                        ->scalarNode('eu_endpoint')->defaultValue('https://eu-api.friendlycaptcha.eu/api/v1/siteverify')->end()
+                        ->scalarNode('endpoint')->defaultValue('https://global.frcapi.com/api/v2/captcha/siteverify')->end()
+                        ->scalarNode('eu_endpoint')->defaultValue('https://eu.frcapi.com/api/v2/captcha/siteverify')->end()
                     ->end()
                 ->end()
             ->end();

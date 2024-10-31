@@ -48,10 +48,12 @@ class FriendlyCaptchaValidValidator extends ConstraintValidator
         try {
             $response = $this->httpClient->request('POST', $this->endpoint, [
                 'body' => [
-                    'secret' => $this->secret,
                     'sitekey' => $this->sitekey,
                     'solution' => $value,
                 ],
+                'headers' => [
+                    'X-API-Key' => $this->secret,
+                ]
             ]);
             $content = $response->getContent();
         } catch (\Exception $e) {

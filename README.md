@@ -35,8 +35,8 @@ return [
 
 ```yaml
 cors_friendly_captcha:
-    sitekey: here_is_your_api_key
-    secret: here_is_your_secret
+    sitekey: here_is_your_sitekey
+    secret: here_is_your_api_key
     use_eu_endpoints: true|false
 ```
 
