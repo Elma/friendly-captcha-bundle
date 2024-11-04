@@ -49,24 +49,20 @@ class FriendlyCaptchaTypeTest extends TestCase
         $this->assertArrayNotHasKey('sitekey', $view->vars);
 
         $this->type->buildView($view, $form, [
-            'lang' => 'de',
-            'start' => 'none',
-            'callback' => 'globalThis.loadForm'
+            'start' => 'none'
         ]);
 
         $this->assertArrayHasKey('sitekey', $view->vars);
         $this->assertArrayHasKey('friendly_captcha', $view->vars);
         $this->assertSame([
-            'lang' => 'de',
-            'start' => 'none',
-            'callback' => 'globalThis.loadForm'
+            'start' => 'none'
         ], $view->vars['friendly_captcha']);
     }
 
     /**
      * @test
      */
-    public function buildViewWithoutLangOption(): void
+    public function buildViewWithouOption(): void
     {
         $view = new FormView();
 
@@ -76,38 +72,11 @@ class FriendlyCaptchaTypeTest extends TestCase
         $this->assertArrayNotHasKey('sitekey', $view->vars);
 
         $this->type->buildView($view, $form, [
-            'start' => 'none',
-            'callback' => 'globalThis.loadForm'
         ]);
 
         $this->assertArrayHasKey('sitekey', $view->vars);
         $this->assertArrayHasKey('friendly_captcha', $view->vars);
         $this->assertSame([
-            'start' => 'none',
-            'callback' => 'globalThis.loadForm'
-        ], $view->vars['friendly_captcha']);
-    }
-
-    /**
-     * @test
-     */
-    public function buildViewWithoutCallbackAndStartOption(): void
-    {
-        $view = new FormView();
-
-        /** @var FormInterface $form */
-        $form = $this->createMock(FormInterface::class);
-
-        $this->assertArrayNotHasKey('sitekey', $view->vars);
-
-        $this->type->buildView($view, $form, [
-            'lang' => 'de',
-        ]);
-
-        $this->assertArrayHasKey('sitekey', $view->vars);
-        $this->assertArrayHasKey('friendly_captcha', $view->vars);
-        $this->assertSame([
-            'lang' => 'de',
         ], $view->vars['friendly_captcha']);
     }
 

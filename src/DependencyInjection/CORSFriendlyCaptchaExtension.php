@@ -16,11 +16,13 @@ final class CORSFriendlyCaptchaExtension extends Extension
         $configs = $this->processConfiguration($this->getConfiguration([], $container), $configs);
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
 
-        if ($configs['use_eu_endpoints']) {
+        if ($configs['use_eu_endpoints'] == true) {
+            $container->setParameter('cors.friendly_captcha.use_eu_endpoints', true);
             $puzzleEndpoint = $configs['puzzle']['eu_endpoint'];
             $verificationEndpoint = $configs['validation']['eu_endpoint'];
         }
         else {
+            $container->setParameter('cors.friendly_captcha.use_eu_endpoints', false);
             $puzzleEndpoint = $configs['puzzle']['endpoint'];
             $verificationEndpoint = $configs['validation']['endpoint'];
         }
