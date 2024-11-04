@@ -62,7 +62,7 @@ class FriendlyCaptchaTypeTest extends TestCase
     /**
      * @test
      */
-    public function buildViewWithouOption(): void
+    public function buildViewWithoutStartOption(): void
     {
         $view = new FormView();
 
