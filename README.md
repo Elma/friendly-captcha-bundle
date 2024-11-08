@@ -7,6 +7,8 @@ This bundle provides easy [friendlycaptcha.com](https://www.friendlycaptcha.com)
 
 This is a fork of the [cors][https://github.com/cors-gmbh/friendly-captcha-bundle] bundle, that does not seems to be maintened,  [see this PR for details][https://github.com/cors-gmbh/friendly-captcha-bundle/pull/3]
 
+The main branch works with the v2 API, see https://developer.friendlycaptcha.com/docs/v2/guides/upgrading-from-v1/backend-integration for migration instruction or use the main_v1 / v1.x version of the bundle.
+
 ## Installation
 
 ### Step 1: Use composer and enable Bundle
