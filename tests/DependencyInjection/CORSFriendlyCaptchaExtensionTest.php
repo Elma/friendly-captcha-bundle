@@ -40,7 +40,7 @@ class CORSFriendlyCaptchaExtensionTest extends TestCase
         $this->assertParameter('secret', 'cors.friendly_captcha.secret');
         $this->assertParameter('sitekey', 'cors.friendly_captcha.sitekey');
         $this->assertParameter('https://eu-api.friendlycaptcha.eu/api/v1/puzzle', 'cors.friendly_captcha.endpoint.puzzle');
-        $this->assertParameter('https://eu-api.friendlycaptcha.eu/api/v1/siteverify', 'cors.friendly_captcha.endpoint.validation');
+        $this->assertParameter('https://eu.frcapi.com/api/v2/captcha/siteverify', 'cors.friendly_captcha.endpoint.validation');
     }
 
     public function testSimpleComConfiguration(): void
@@ -53,7 +53,7 @@ class CORSFriendlyCaptchaExtensionTest extends TestCase
         $this->assertParameter('secret', 'cors.friendly_captcha.secret');
         $this->assertParameter('sitekey', 'cors.friendly_captcha.sitekey');
         $this->assertParameter('https://api.friendlycaptcha.com/api/v1/puzzle', 'cors.friendly_captcha.endpoint.puzzle');
-        $this->assertParameter('https://api.friendlycaptcha.com/api/v1/siteverify', 'cors.friendly_captcha.endpoint.validation');
+        $this->assertParameter('https://global.frcapi.com/api/v2/captcha/siteverify', 'cors.friendly_captcha.endpoint.validation');
     }
     public function testCustomEndpointConfiguration(): void
     {

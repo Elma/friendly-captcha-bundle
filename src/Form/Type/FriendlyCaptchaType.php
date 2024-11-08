@@ -13,13 +13,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class FriendlyCaptchaType extends AbstractType
 {
-    protected $sitekey;
-    protected $endpoint;
+    protected string $sitekey;
+    protected bool $useEuEndpoints;
 
-    public function __construct(string $sitekey, string $endpoint)
+    public function __construct(string $sitekey, bool $useEuEndpoints)
     {
         $this->sitekey = $sitekey;
-        $this->endpoint = $endpoint;
+        $this->useEuEndpoints = $useEuEndpoints;
     }
 
     public function getParent()
@@ -30,11 +30,12 @@ final class FriendlyCaptchaType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $fcValues = array_filter([
-            'puzzle-endpoint' => $this->endpoint,
-            'lang' => $options['lang'] ?? null,
-            'start' => $options['start'] ?? null,
-            'callback' => $options['callback'] ?? null,
+            'start' => $options['start'] ?? null
         ]);
+
+        if ($this->useEuEndpoints == true) {
+            $fcValues['api-endpoint'] = 'eu';
+        }
 
         $view->vars['sitekey'] = $this->sitekey;
         $view->vars['friendly_captcha'] = $fcValues;
@@ -43,9 +44,7 @@ final class FriendlyCaptchaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'lang' => null,
             'start' => 'focus',
-            'callback' => null,
             'constraints' => [new FriendlyCaptchaValid()]
         ]);
 
