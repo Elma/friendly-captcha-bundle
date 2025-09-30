@@ -7,6 +7,8 @@ This bundle provides easy [friendlycaptcha.com](https://www.friendlycaptcha.com)
 
 This is a fork of the [cors][https://github.com/cors-gmbh/friendly-captcha-bundle] bundle, that does not seems to be maintened,  [see this PR for details][https://github.com/cors-gmbh/friendly-captcha-bundle/pull/3]
 
+The main branch works with the v2 API, see https://developer.friendlycaptcha.com/docs/v2/guides/upgrading-from-v1/backend-integration for migration instruction or use the main_v1 / v1.x version of the bundle.
+
 ## Installation
 
 ### Step 1: Use composer and enable Bundle
@@ -18,18 +20,17 @@ php composer.phar require elma/friendly-captcha-bundle
 ```
 
 Now, Composer will automatically download all required files, and install them
-for you. All that is left to do is to update your ``AppKernel.php`` file, and
+for you. All that is left to do is to update your ``bundles.php`` file, and
 register the new bundle:
 
 ```php
 <?php
 
-// in AppKernel::registerBundles()
-$bundles = array(
-    // ...
-    new CORS\Bundle\FriendlyCaptchaBundle\CORSFriendlyCaptchaBundle(),
-    // ...
-);
+// in config/bundles.php
+return [
+    CORS\Bundle\FriendlyCaptchaBundle\CORSFriendlyCaptchaBundle::class => ['all' => true],
+    //...
+    ];
 ```
 
 ### Step2: Configure the bundle's
@@ -37,7 +38,7 @@ $bundles = array(
 ```yaml
 cors_friendly_captcha:
     sitekey: here_is_your_sitekey
-    secret: here_is_your_secret
+    secret: here_is_your_api_key
     use_eu_endpoints: true|false
 ```
 
@@ -45,10 +46,10 @@ cors_friendly_captcha:
 
 ```yaml
 cors_friendly_captcha:
-  puzzle: 
+  puzzle:
     endpoint: https://api.friendlycaptcha.com/api/v1/puzzle
     eu_endpoint: https://eu-api.friendlycaptcha.eu/api/v1/puzzle
-  validation: 
-    endpoint: https://api.friendlycaptcha.com/api/v1/siteverify
-    eu_endpoint: https://eu-api.friendlycaptcha.eu/api/v1/siteverify
+  validation:
+    endpoint: https://global.frcapi.com/api/v2/captcha/siteverify
+    eu_endpoint: https://eu.frcapi.com/api/v2/captcha/siteverify
 ```
